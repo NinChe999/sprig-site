@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprig — Better-Ingredient Dog Treats & Toys, Delivered Monthly</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bark:#2b2118;        /* deep brown ink */
+    --cream:#fbf4e6;       /* warm paper */
+    --moss:#3f6b3f;        /* leafy green */
+    --moss-deep:#2c4d2c;
+    --sprout:#8fc25b;      /* fresh sprout green */
+    --berry:#e0613f;       /* terracotta-coral */
+    --honey:#f2b134;       /* warm gold */
+    --sky:#bfe0d8;         /* soft mint */
+    --paper-edge:#efe3cb;
+    --shadow:rgba(43,33,24,.14);
+    --display:"Fraunces",Georgia,serif;
+    --body:"Nunito",system-ui,sans-serif;
+    --util:"Space Grotesk",monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);background:var(--cream);color:var(--bark);
+    line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+  .eyebrow{
+    font-family:var(--util);text-transform:uppercase;letter-spacing:.22em;
+    font-size:.72rem;font-weight:600;color:var(--berry);
+  }
+  .jp{font-family:var(--util);letter-spacing:.5em;font-size:.7rem;color:var(--moss);opacity:.6;text-transform:uppercase}
+  h1,h2,h3{font-family:var(--display);line-height:1.05;font-weight:700}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;font-family:var(--body);
+    font-weight:800;font-size:1.02rem;border:none;cursor:pointer;
+    background:var(--berry);color:#fff;padding:.85rem 1.6rem;border-radius:999px;
+    box-shadow:0 6px 0 #b84025;transition:transform .12s,box-shadow .12s;
+  }
+  .btn:hover{transform:translateY(2px);box-shadow:0 4px 0 #b84025}
+  .btn:active{transform:translateY(6px);box-shadow:0 0 0 #b84025}
+  .btn.alt{background:var(--moss);box-shadow:0 6px 0 var(--moss-deep)}
+  .btn.alt:hover{box-shadow:0 4px 0 var(--moss-deep)}
+  .btn .star{width:20px;height:20px}
+
+  /* announcement bar */
+  .ann{background:var(--moss-deep);color:var(--cream);text-align:center;
+    font-size:.82rem;font-weight:700;padding:.5rem 1rem;letter-spacing:.02em}
+  .ann b{color:var(--honey)}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:var(--cream);
+    border-bottom:2px solid var(--paper-edge);}
+  .navinner{display:flex;align-items:center;justify-content:space-between;
+    height:74px;gap:1rem}
+  .logo{font-family:var(--display);font-weight:900;font-size:1.7rem;
+    color:var(--moss);display:flex;align-items:center;gap:.4rem;letter-spacing:-.02em}
+  .logo svg{width:30px;height:30px}
+  /* icon-led dropdown nav */
+  .navlinks{display:flex;gap:.4rem;font-weight:700;font-size:.95rem;height:100%}
+  .navitem{position:relative;display:flex;align-items:center}
+  .navitem>.trigger{
+    display:flex;align-items:center;gap:.5rem;padding:.55rem .9rem;border-radius:14px;
+    cursor:pointer;background:none;border:none;font-family:var(--body);font-weight:700;
+    font-size:.95rem;color:var(--bark);transition:background .15s,color .15s}
+  .navitem>.trigger .ico{width:30px;height:30px;border-radius:9px;display:flex;
+    align-items:center;justify-content:center;font-size:1.05rem;background:var(--sky);transition:transform .15s}
+  .navitem:nth-child(2)>.trigger .ico{background:#fbe2b0}
+  .navitem:nth-child(3)>.trigger .ico{background:#dff0c8}
+  .navitem:nth-child(4)>.trigger .ico{background:#f6cdc0}
+  .navitem>.trigger .caret{width:11px;height:11px;transition:transform .2s;opacity:.55}
+  .navitem:hover>.trigger{background:var(--paper-edge);color:var(--berry)}
+  .navitem:hover>.trigger .ico{transform:rotate(-6deg) scale(1.05)}
+  .navitem:hover>.trigger .caret{transform:rotate(180deg)}
+  /* dropdown panel */
+  .dropdown{
+    position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(8px);
+    background:#fff;border:2px solid var(--paper-edge);border-radius:20px;
+    box-shadow:0 24px 50px -20px var(--shadow);padding:14px;min-width:300px;
+    opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,transform .18s;z-index:60}
+  .navitem:hover .dropdown,.navitem:focus-within .dropdown{
+    opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+  .dropdown::before{content:"";position:absolute;top:-9px;left:50%;transform:translateX(-50%) rotate(45deg);
+    width:16px;height:16px;background:#fff;border-left:2px solid var(--paper-edge);border-top:2px solid var(--paper-edge)}
+  .dd-link{display:flex;gap:.8rem;align-items:flex-start;padding:.7rem .8rem;border-radius:13px;transition:background .14s}
+  .dd-link:hover{background:var(--cream)}
+  .dd-link .ddico{flex:none;width:38px;height:38px;border-radius:11px;background:var(--sky);
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .dd-link:nth-child(2) .ddico{background:#fbe2b0}
+  .dd-link:nth-child(3) .ddico{background:#dff0c8}
+  .dd-link:nth-child(4) .ddico{background:#f6cdc0}
+  .dd-link b{display:block;font-size:.96rem;font-weight:800}
+  .dd-link small{color:#8a7a66;font-weight:600;font-size:.82rem;line-height:1.3}
+  .dd-foot{margin-top:6px;padding:.7rem .8rem;border-top:1px dashed var(--paper-edge);
+    display:flex;justify-content:space-between;align-items:center;font-weight:800;color:var(--berry);font-size:.9rem}
+  .dd-foot:hover{color:var(--moss)}
+  .navright{display:flex;align-items:center;gap:1rem}
+  .ghost{font-weight:800;font-size:.92rem}
+  .menutoggle{display:none;background:none;border:none;cursor:pointer}
+  .menutoggle span{display:block;width:26px;height:3px;background:var(--bark);
+    margin:5px 0;border-radius:2px}
+
+  /* hero */
+  .hero{position:relative;background:
+    radial-gradient(circle at 80% 18%, var(--sky), transparent 42%),
+    radial-gradient(circle at 12% 78%, #f5d9a8, transparent 45%),
+    var(--cream);
+    padding:70px 0 90px;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.2vw,4.3rem);margin:.6rem 0 1rem}
+  .hero h1 em{font-style:normal;color:var(--berry)}
+  .hero p.lede{font-size:1.15rem;max-width:30ch;font-weight:600;color:#5a4a38}
+  .rating{display:flex;align-items:center;gap:.6rem;margin:1.4rem 0 1.8rem;font-weight:700}
+  .stars{color:var(--honey);font-size:1.2rem;letter-spacing:.1em}
+  .rating small{color:#8a7a66;font-weight:600}
+  .heroctas{display:flex;gap:.9rem;flex-wrap:wrap}
+  .heroart{position:relative;display:flex;justify-content:center}
+  .box3d{
+    width:330px;height:330px;border-radius:34px;position:relative;
+    background:linear-gradient(150deg,var(--berry),#cf4f2e);
+    box-shadow:0 30px 60px -18px var(--shadow);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(-6deg);
+  }
+  .box3d::before{content:"";position:absolute;inset:18px;border:3px dashed rgba(255,255,255,.45);border-radius:24px}
+  .box3d .lid{position:absolute;top:-26px;left:-14px;right:-14px;height:64px;
+    background:var(--moss);border-radius:18px;transform:rotate(2deg);
+    box-shadow:0 8px 0 var(--moss-deep)}
+  .box3d .brand{font-family:var(--display);font-weight:900;color:#fff;
+    font-size:2.6rem;letter-spacing:-.02em;z-index:2}
+  .floaty{position:absolute;font-size:2.4rem;filter:drop-shadow(0 6px 8px var(--shadow));animation:bob 4s ease-in-out infinite}
+  .f1{top:6%;right:8%;animation-delay:.1s}
+  .f2{bottom:2%;left:2%;animation-delay:.7s}
+  .f3{top:48%;right:-2%;animation-delay:1.2s}
+  .f4{bottom:18%;right:14%;font-size:1.9rem;animation-delay:.4s}
+  @keyframes bob{50%{transform:translateY(-14px) rotate(8deg)}}
+  .pawtrail{position:absolute;inset:0;pointer-events:none;opacity:.12;z-index:0}
+
+  /* seen on */
+  .seen{padding:30px 0 10px;text-align:center}
+  .seen .eyebrow{display:block;margin-bottom:14px}
+  .seenrow{display:flex;justify-content:center;flex-wrap:wrap;gap:34px;
+    font-family:var(--display);font-weight:700;font-size:1.25rem;color:#b6a489;opacity:.85}
+
+  /* section scaffold */
+  section.block{padding:84px 0}
+  .secnum{font-family:var(--util);font-weight:700;color:var(--sprout);font-size:1.1rem}
+  .sechead{display:flex;align-items:baseline;gap:1rem;margin-bottom:.4rem}
+  .sectitle{font-size:clamp(2rem,4vw,3rem);margin:.3rem 0 1.4rem;max-width:18ch}
+  .sectitle em{font-style:normal;color:var(--berry)}
+
+  /* this month */
+  .month{background:var(--moss);color:var(--cream)}
+  .month .eyebrow{color:var(--honey)}
+  .month .jp{color:var(--sky)}
+  .monthgrid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .monthcard{background:var(--cream);color:var(--bark);border-radius:28px;
+    padding:34px;box-shadow:0 24px 50px -20px rgba(0,0,0,.4)}
+  .pill{display:inline-block;background:var(--honey);color:var(--bark);
+    font-family:var(--util);font-weight:700;font-size:.78rem;letter-spacing:.08em;
+    padding:.35rem .9rem;border-radius:999px;text-transform:uppercase}
+  .monthcard h3{font-size:2.2rem;margin:.8rem 0 .4rem}
+  .deadline{font-family:var(--util);font-weight:600;color:var(--berry);font-size:.9rem;margin-bottom:1.2rem}
+  .menulist{list-style:none;margin:1rem 0 1.4rem}
+  .menulist li{display:flex;gap:.7rem;align-items:flex-start;padding:.5rem 0;
+    border-bottom:1px dashed var(--paper-edge);font-weight:600}
+  .menulist li span{font-size:1.3rem}
+  .month h2{color:var(--cream);font-size:clamp(2rem,4vw,3rem);max-width:14ch}
+  .month .secnum{color:var(--sprout)}
+
+  /* how it works */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:1.5rem}
+  .step{background:#fff;border-radius:24px;padding:30px;text-align:center;
+    border:2px solid var(--paper-edge);box-shadow:0 12px 30px -18px var(--shadow);
+    transition:transform .15s}
+  .step:hover{transform:translateY(-6px)}
+  .stepicon{width:84px;height:84px;border-radius:50%;margin:0 auto 1rem;
+    display:flex;align-items:center;justify-content:center;font-size:2.4rem}
+  .step:nth-child(1) .stepicon{background:var(--sky)}
+  .step:nth-child(2) .stepicon{background:#fbe2b0}
+  .step:nth-child(3) .stepicon{background:#dff0c8}
+  .step h3{font-size:1.4rem;margin-bottom:.4rem}
+  .step p{color:#6b5a45;font-weight:600;font-size:.96rem}
+
+  /* more than treats / USP */
+  .usp{background:
+    linear-gradient(var(--bark),var(--bark));color:var(--cream)}
+  .usp .sectitle{color:var(--cream)}
+  .usp .sectitle em{color:var(--honey)}
+  .usp .secnum{color:var(--sprout)}
+  .uspgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:1.4rem}
+  .uspcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
+    border-radius:22px;padding:30px;position:relative;overflow:hidden}
+  .uspcard .big{font-family:var(--display);font-weight:900;font-size:3rem;
+    color:var(--honey);line-height:1}
+  .uspcard h3{font-size:1.35rem;margin:.7rem 0 .5rem}
+  .uspcard p{color:#cdбbbаa;color:#cbbcaa;font-weight:600;font-size:.95rem}
+  .uspcard::after{content:"";position:absolute;width:120px;height:120px;
+    border-radius:50%;background:var(--moss);opacity:.18;bottom:-40px;right:-30px}
+
+  /* testimonials */
+  .tcloud{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:1.6rem}
+  .tcard{background:#fff;border-radius:20px;padding:24px;border:2px solid var(--paper-edge);
+    box-shadow:0 10px 26px -18px var(--shadow)}
+  .tcard .who{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+  .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:1.3rem;background:var(--sky)}
+  .tcard:nth-child(2n) .av{background:#fbe2b0}
+  .tcard:nth-child(3n) .av{background:#dff0c8}
+  .who b{font-weight:800;font-size:.95rem}
+  .who small{display:block;color:#9a8a76;font-family:var(--util);font-size:.75rem}
+  .tcard p{font-weight:600;color:#5a4a38;font-size:.96rem}
+  .tcard .s{color:var(--honey);letter-spacing:.1em;margin-top:.6rem}
+
+  /* pricing */
+  .pricing{background:var(--sky)}
+  .pricing .secnum{color:var(--moss-deep)}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:1.6rem;align-items:stretch}
+  .plan{background:var(--cream);border-radius:26px;padding:34px 28px;
+    border:3px solid transparent;display:flex;flex-direction:column;
+    box-shadow:0 16px 40px -22px var(--shadow);position:relative}
+  .plan.feat{border-color:var(--berry);transform:scale(1.03)}
+  .plan .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+    background:var(--berry);color:#fff;font-family:var(--util);font-weight:700;
+    font-size:.72rem;letter-spacing:.08em;padding:.3rem .9rem;border-radius:999px;text-transform:uppercase}
+  .plan h3{font-size:1.5rem}
+  .plan .price{font-family:var(--display);font-weight:900;font-size:2.8rem;margin:.4rem 0 0}
+  .plan .price small{font-size:1rem;font-weight:700;color:#8a7a66;font-family:var(--body)}
+  .plan ul{list-style:none;margin:1.2rem 0;flex:1}
+  .plan li{padding:.45rem 0;font-weight:600;display:flex;gap:.5rem}
+  .plan li::before{content:"🐾";font-size:.9rem}
+  .plan .btn{width:100%;justify-content:center}
+
+  /* faq */
+  .faq{max-width:760px;margin:1.4rem auto 0}
+  details{background:#fff;border:2px solid var(--paper-edge);border-radius:16px;
+    padding:.4rem 1.2rem;margin-bottom:12px}
+  details summary{font-family:var(--display);font-weight:700;font-size:1.1rem;
+    padding:.9rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary::-webkit-details-marker{display:none}
+  details summary::after{content:"+";font-size:1.6rem;color:var(--berry);font-family:var(--body)}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 0 1rem;color:#5a4a38;font-weight:600}
+
+  /* final cta */
+  .final{background:var(--berry);color:#fff;text-align:center;padding:90px 0}
+  .final h2{font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;max-width:16ch;margin:0 auto 1rem}
+  .final p{font-weight:700;font-size:1.1rem;margin-bottom:1.6rem;opacity:.95}
+  .final .btn{background:var(--cream);color:var(--bark);box-shadow:0 6px 0 #cbb98f}
+  .final .btn:hover{box-shadow:0 4px 0 #cbb98f}
+
+  /* footer */
+  footer{background:var(--bark);color:var(--cream);padding:60px 0 30px}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+  .fbrand .logo{color:var(--sprout)}
+  .fbrand p{color:#b6a489;font-weight:600;margin:.8rem 0;max-width:28ch}
+  .fcol h4{font-family:var(--util);text-transform:uppercase;letter-spacing:.15em;
+    font-size:.78rem;color:var(--honey);margin-bottom:.9rem}
+  .fcol a{display:block;padding:.3rem 0;color:#d8cdba;font-weight:600;font-size:.93rem}
+  .fcol a:hover{color:#fff}
+  .news{display:flex;gap:.5rem;margin-top:.6rem}
+  .news input{flex:1;border:none;border-radius:999px;padding:.7rem 1rem;font-family:var(--body);font-weight:600}
+  .news button{border:none;background:var(--sprout);color:var(--bark);font-weight:800;
+    border-radius:999px;padding:.7rem 1.1rem;cursor:pointer}
+  .fbar{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+    color:#9a8a76;font-size:.85rem;font-weight:600}
+  .socials{display:flex;gap:.8rem}
+  .socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);
+    display:flex;align-items:center;justify-content:center;font-size:1rem}
+
+  @media(max-width:900px){
+    .navlinks,.navright .ghost{display:none}
+    .menutoggle{display:block}
+    /* mobile menu open state */
+    .navlinks.open{display:flex;flex-direction:column;position:absolute;top:74px;left:0;right:0;
+      background:var(--cream);padding:1rem 18px 1.4rem;gap:.3rem;
+      border-bottom:2px solid var(--paper-edge);max-height:80vh;overflow-y:auto;box-shadow:0 20px 30px -20px var(--shadow)}
+    .navlinks.open .navitem{display:block;width:100%}
+    .navlinks.open .navitem>.trigger{width:100%;justify-content:flex-start;font-size:1.05rem;padding:.8rem .6rem}
+    .navlinks.open .navitem>.trigger .caret{margin-left:auto}
+    .navlinks.open .dropdown{position:static;transform:none;opacity:1;visibility:visible;
+      pointer-events:auto;box-shadow:none;border:none;border-radius:0;min-width:0;padding:0 0 .6rem 3rem;
+      display:none;background:transparent}
+    .navlinks.open .dropdown::before{display:none}
+    .navlinks.open .navitem.expanded .dropdown{display:block}
+    .navlinks.open .navitem.expanded>.trigger .caret{transform:rotate(180deg)}
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
+    .hero p.lede{margin:0 auto}
+    .rating,.heroctas{justify-content:center}
+    .heroart{margin-top:1.5rem}
+    .monthgrid,.steps,.uspgrid,.tcloud,.plans,.fgrid{grid-template-columns:1fr}
+    .plan.feat{transform:none}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="ann">🌱 New members get a <b>FREE toy</b> in their first box — use code <b>FETCH</b></div>
+
+<nav>
+  <div class="wrap navinner">
+    <a href="#" class="logo">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1.2 0-2-1-2-2 0-2 2-3 2-3s2 1 2 3c0 1-.8 2-2 2Z" fill="#e0613f"/><circle cx="6.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="17.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="9" cy="5" r="1.8" fill="#3f6b3f"/><circle cx="15" cy="5" r="1.8" fill="#3f6b3f"/></svg>
+      Sprig
+    </a>
+    <div class="navlinks">
+      <div class="navitem">
+        <button class="trigger"><span class="ico">📦</span>Subscription Box<svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dropdown">
+          <a class="dd-link" href="#pricing"><span class="ddico">🐾</span><span><b>Build a Box</b><small>Pick a plan and customize for your dog</small></span></a>
+          <a class="dd-link" href="#month"><span class="ddico">🌿</span><span><b>This Month's Box</b><small>See what's inside June's Garden Romp</small></span></a>
+          <a class="dd-link" href="#"><span class="ddico">🎁</span><span><b>Gift a Box</b><small>The perfect present for any good dog</small></span></a>
+          <a class="dd-link" href="#"><span class="ddico">📅</span><span><b>Past Boxes</b><small>Browse boxes we've sent before</small></span></a>
+          <a class="dd-foot" href="#pricing">View all plans <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="trigger"><span class="ico">🦴</span>Why Sprig<svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dropdown">
+          <a class="dd-link" href="#why"><span class="ddico">🥕</span><span><b>Real Ingredients</b><small>No fillers, dyes, or mystery meat</small></span></a>
+          <a class="dd-link" href="#why"><span class="ddico">🎾</span><span><b>Tough Toys</b><small>Tested and matched to chew strength</small></span></a>
+          <a class="dd-link" href="#why"><span class="ddico">🩺</span><span><b>Vet-Led Curation</b><small>Every box approved by a licensed vet</small></span></a>
+          <a class="dd-foot" href="#how">How it works <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="trigger"><span class="ico">🌱</span>Our Story<svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dropdown">
+          <a class="dd-link" href="#"><span class="ddico">📖</span><span><b>About Sprig</b><small>Why we started and who we are</small></span></a>
+          <a class="dd-link" href="#"><span class="ddico">👩‍🍳</span><span><b>Our Kitchen</b><small>How we source and make every treat</small></span></a>
+          <a class="dd-link" href="#"><span class="ddico">💚</span><span><b>Our Promise</b><small>The standards behind every box</small></span></a>
+          <a class="dd-foot" href="#">Meet the team <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="navitem">
+        <button class="trigger"><span class="ico">⭐</span>Reviews<svg class="caret" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        <div class="dropdown">
+          <a class="dd-link" href="#reviews"><span class="ddico">🐕</span><span><b>Pup Reviews</b><small>4.9 stars from 3,100+ dogs</small></span></a>
+          <a class="dd-link" href="#reviews"><span class="ddico">📸</span><span><b>Wall of Wags</b><small>Real photos from the Sprig pack</small></span></a>
+          <a class="dd-link" href="#"><span class="ddico">🏆</span><span><b>As Featured In</b><small>Press and awards we're proud of</small></span></a>
+          <a class="dd-foot" href="#reviews">Read all reviews <span>→</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="navright">
+      <a href="#" class="ghost">Sign in</a>
+      <a href="#pricing" class="btn">Get the box</a>
+    </div>
+    <button class="menutoggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="herocopy">
+      <span class="eyebrow">Real-ingredient treats + toys</span>
+      <h1>The monthly box your dog <em>actually</em> deserves.</h1>
+      <p class="lede">Vet-approved treats with ingredients you can pronounce, plus a tough toy worth wagging about — delivered to your door every month.</p>
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <strong>4.9</strong>
+        <small>from 3,100+ happy pups</small>
+      </div>
+      <div class="heroctas">
+        <a href="#pricing" class="btn">Build your box
+          <svg class="star" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.4 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.6-.5z"/></svg>
+        </a>
+        <a href="#how" class="btn alt">See how it works</a>
+      </div>
+    </div>
+    <div class="heroart">
+      <div class="box3d">
+        <div class="lid"></div>
+        <div class="brand">Sprig</div>
+      </div>
+      <span class="floaty f1">🦴</span>
+      <span class="floaty f2">🐕</span>
+      <span class="floaty f3">🎾</span>
+      <span class="floaty f4">🥕</span>
+    </div>
+  </div>
+</header>
+
+<!-- SEEN ON -->
+<div class="seen wrap">
+  <span class="eyebrow">As loved by good dogs everywhere</span>
+  <div class="seenrow">
+    <span>The Bark</span><span>PupLife</span><span>Modern Dog</span><span>Snout&amp;About</span><span>Wagazine</span>
+  </div>
+</div>
+
+<!-- THIS MONTH -->
+<section class="block month" id="month">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="secnum">01</span><span class="jp">今月のボックス</span>
+    </div>
+    <span class="eyebrow">This month's box</span>
+    <div class="monthgrid" style="margin-top:1.2rem">
+      <div>
+        <h2>The Garden Romp Box</h2>
+        <p style="font-weight:600;margin:1rem 0;max-width:34ch;color:var(--sky)">Crunchy, single-ingredient bites and a rugged tug toy built for backyard zoomies. Limited run — once it's gone, it's gone.</p>
+        <a href="#pricing" class="btn">Claim this box</a>
+      </div>
+      <div class="monthcard">
+        <span class="pill">June Box</span>
+        <h3>What's inside</h3>
+        <p class="deadline">⏳ Order by June 28 to get it</p>
+        <ul class="menulist">
+          <li><span>🥕</span> Sweet-potato &amp; carrot crunch sticks</li>
+          <li><span>🐟</span> Wild salmon skin twists</li>
+          <li><span>🦴</span> Slow-roasted bone-broth biscuits</li>
+          <li><span>🌿</span> Pumpkin &amp; flaxseed soft chews</li>
+          <li><span>🎾</span> Rope-core "Root Tugger" toy</li>
+        </ul>
+        <a href="#pricing" class="btn alt" style="width:100%;justify-content:center">Subscribe now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="sechead"><span class="secnum">02</span><span class="jp">仕組み</span></div>
+    <span class="eyebrow">How it works</span>
+    <h2 class="sectitle">From our kitchen to your dog's <em>happy dance</em>.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="stepicon">🐶</div>
+        <h3>Tell us about your dog</h3>
+        <p>Size, age, and any sensitivities. We tailor every box to fit your pup, from teacup to giant.</p>
+      </div>
+      <div class="step">
+        <div class="stepicon">📦</div>
+        <h3>We curate &amp; pack</h3>
+        <p>Real-ingredient treats and one durable toy, chosen monthly by our vet-led team and packed fresh.</p>
+      </div>
+      <div class="step">
+        <div class="stepicon">🎉</div>
+        <h3>Tails wag at the door</h3>
+        <p>A new themed box lands every month. Skip, swap, or cancel anytime — no kibble-sized commitments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY SPRIG / USP -->
+<section class="block usp" id="why">
+  <div class="wrap">
+    <div class="sechead"><span class="secnum">03</span><span class="jp">スプリグの理由</span></div>
+    <span class="eyebrow">More than just treats</span>
+    <h2 class="sectitle">Why dog people choose <em>Sprig</em>.</h2>
+    <div class="uspgrid">
+      <div class="uspcard">
+        <div class="big">01</div>
+        <h3>Ingredients you can read</h3>
+        <p>No fillers, no mystery meat. Single-source proteins and real veggies — the kind you'd be happy to eat yourself.</p>
+      </div>
+      <div class="uspcard">
+        <div class="big">02</div>
+        <h3>Toys built to survive</h3>
+        <p>Every box includes a tested, tough toy matched to your dog's chew strength. Goodbye, five-minute squeakers.</p>
+      </div>
+      <div class="uspcard">
+        <div class="big">03</div>
+        <h3>Vet-led curation</h3>
+        <p>A licensed vet signs off on every box, plus a little card explaining why each treat is good for your pup.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block" id="reviews">
+  <div class="wrap">
+    <div class="sechead"><span class="secnum">04</span><span class="jp">お客様の声</span></div>
+    <span class="eyebrow">Testimonials</span>
+    <h2 class="sectitle">The <em>pack</em> speaks.</h2>
+    <div class="tcloud">
+      <div class="tcard"><div class="who"><div class="av">🐕</div><div><b>Maya &amp; Biscuit</b><small>@biscuitthecorgi</small></div></div><p>Biscuit usually ignores half his treats. With Sprig he sits by the door on delivery day. The toy lasted a whole month — a record.</p><div class="s">★★★★★</div></div>
+      <div class="tcard"><div class="who"><div class="av">🦮</div><div><b>Devon R.</b><small>verified member</small></div></div><p>My vet actually approved the ingredient list, which has never happened with a subscription box before. Worth every penny.</p><div class="s">★★★★★</div></div>
+      <div class="tcard"><div class="who"><div class="av">🐩</div><div><b>Priya S.</b><small>@twopoodleslife</small></div></div><p>Two poodles, zero leftovers. Love that I can swap the toy if they already have something similar. Customer service is lovely too.</p><div class="s">★★★★★</div></div>
+      <div class="tcard"><div class="who"><div class="av">🐕‍🦺</div><div><b>Marcus T.</b><small>verified member</small></div></div><p>My senior lab has a sensitive stomach and these are the only treats that don't upset her. The themed boxes are a fun bonus.</p><div class="s">★★★★★</div></div>
+      <div class="tcard"><div class="who"><div class="av">🐶</div><div><b>Ana &amp; Pepper</b><small>@pepperdoesthings</small></div></div><p>The "Root Tugger" survived my pit mix, which I genuinely did not think was possible. Subscribed on the spot.</p><div class="s">★★★★★</div></div>
+      <div class="tcard"><div class="who"><div class="av">🐾</div><div><b>Jordan L.</b><small>verified member</small></div></div><p>Best gift I've given a dog-owner friend. The unboxing is adorable and the little info cards are a nice touch.</p><div class="s">★★★★★</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="block pricing" id="pricing">
+  <div class="wrap">
+    <div class="sechead"><span class="secnum">05</span><span class="jp">プラン</span></div>
+    <span class="eyebrow">Pick your plan</span>
+    <h2 class="sectitle">Choose your <em>wag</em> size.</h2>
+    <div class="plans">
+      <div class="plan">
+        <h3>Monthly</h3>
+        <div class="price">$34<small>/mo</small></div>
+        <ul>
+          <li>4–5 real-ingredient treats</li>
+          <li>1 durable toy</li>
+          <li>Vet info card</li>
+          <li>Skip or cancel anytime</li>
+        </ul>
+        <a href="#" class="btn alt">Start monthly</a>
+      </div>
+      <div class="plan feat">
+        <span class="tag">Most popular</span>
+        <h3>6-Month</h3>
+        <div class="price">$29<small>/mo</small></div>
+        <ul>
+          <li>Everything in Monthly</li>
+          <li>Save 15% per box</li>
+          <li>Free first toy upgrade</li>
+          <li>Priority new-flavor access</li>
+        </ul>
+        <a href="#" class="btn">Get 6 months</a>
+      </div>
+      <div class="plan">
+        <h3>Annual</h3>
+        <div class="price">$25<small>/mo</small></div>
+        <ul>
+          <li>Everything in 6-Month</li>
+          <li>Save 26% per box</li>
+          <li>Exclusive holiday box</li>
+          <li>Free Sprig bandana</li>
+        </ul>
+        <a href="#" class="btn alt">Go annual</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="block" id="faq">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block;text-align:center">Good questions</span>
+    <h2 class="sectitle" style="text-align:center;margin-left:auto;margin-right:auto">Sniff out the <em>details</em>.</h2>
+    <div class="faq">
+      <details open><summary>What makes the ingredients "better"?</summary><p>Every treat uses single-source proteins, real fruits and vegetables, and no artificial fillers, dyes, or by-product meals. If we wouldn't feel good feeding it to our own dogs, it doesn't go in the box.</p></details>
+      <details><summary>Can I customize for allergies or size?</summary><p>Yes. When you sign up you tell us your dog's size, age, and any sensitivities, and we match treats and toy durability accordingly. You can update this anytime from your account.</p></details>
+      <details><summary>Can I skip or cancel?</summary><p>Anytime, no fees. Manage, skip, or cancel from your account before your monthly cutoff and you won't be charged for the next box.</p></details>
+      <details><summary>When will my box ship?</summary><p>Boxes ship within the first week of each month. Order before the monthly cutoff to get the current themed box.</p></details>
+      <details><summary>Do you ship outside the US?</summary><p>We currently ship across the US and Canada, with more regions on the way. Join the newsletter to hear when we reach yours.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2>Ready to make delivery day the best day?</h2>
+    <p>Join thousands of dogs eating better and chewing longer.</p>
+    <a href="#pricing" class="btn">Build your first box 🐾</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <a href="#" class="logo">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1.2 0-2-1-2-2 0-2 2-3 2-3s2 1 2 3c0 1-.8 2-2 2Z" fill="#e0613f"/><circle cx="6.5" cy="9" r="2" fill="#8fc25b"/><circle cx="17.5" cy="9" r="2" fill="#8fc25b"/><circle cx="9" cy="5" r="1.8" fill="#8fc25b"/><circle cx="15" cy="5" r="1.8" fill="#8fc25b"/></svg>
+          Sprig
+        </a>
+        <p>Better-ingredient treats and tough toys, delivered monthly. Made by dog people, for good dogs.</p>
+        <div class="news">
+          <input type="email" placeholder="Your email" aria-label="Email">
+          <button>Join</button>
+        </div>
+      </div>
+      <div class="fcol">
+        <h4>Shop</h4>
+        <a href="#pricing">Plans</a><a href="#month">This Month's Box</a><a href="#">Past Boxes</a><a href="#">Gift a Box</a>
+      </div>
+      <div class="fcol">
+        <h4>Company</h4>
+        <a href="#">Our Story</a><a href="#why">Why Sprig</a><a href="#reviews">Reviews</a><a href="#">Careers</a>
+      </div>
+      <div class="fcol">
+        <h4>Support</h4>
+        <a href="#faq">FAQs</a><a href="#">Contact</a><a href="#">Shipping</a><a href="#">Manage account</a>
+      </div>
+    </div>
+    <div class="fbar">
+      <span>© 2026 Sprig Co. All rights reserved.</span>
+      <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
+      <span>Terms · Privacy</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const links = document.querySelector('.navlinks');
+  document.querySelector('.menutoggle').addEventListener('click',()=>{
+    links.classList.toggle('open');
+  });
+  // On mobile, tapping a trigger expands its dropdown instead of following a link
+  document.querySelectorAll('.navitem > .trigger').forEach(t=>{
+    t.addEventListener('click',e=>{
+      if(window.innerWidth<=900){
+        e.preventDefault();
+        const item = t.parentElement;
+        const wasOpen = item.classList.contains('expanded');
+        document.querySelectorAll('.navitem').forEach(i=>i.classList.remove('expanded'));
+        if(!wasOpen) item.classList.add('expanded');
+      }
+    });
+  });
+  // Close mobile menu after choosing a link
+  links.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>links.classList.remove('open'));
+  });
+</script>
+</body>
+</html>
