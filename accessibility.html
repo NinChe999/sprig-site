@@ -63,6 +63,7 @@
   .logo{font-family:var(--display);font-weight:900;font-size:1.7rem;
     color:var(--moss);display:flex;align-items:center;gap:.4rem;letter-spacing:-.02em}
   .logo svg{width:30px;height:30px}
+  .logo img.logo-mark{height:40px;width:auto;display:block}
   /* icon-led dropdown nav */
   .navlinks{display:flex;gap:.4rem;font-weight:700;font-size:.95rem;height:100%}
   .navitem{position:relative;display:flex;align-items:center}
@@ -293,7 +294,7 @@
 
   /* footer */
   footer{background:var(--bark);color:var(--cream);padding:60px 0 30px}
-  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
   .fbrand .logo{color:var(--sprout)}
   .fbrand p{color:#b6a489;font-weight:600;margin:.8rem 0;max-width:28ch}
   .fcol h4{font-family:var(--util);text-transform:uppercase;letter-spacing:.15em;
@@ -463,8 +464,7 @@
 <nav>
   <div class="wrap navinner">
     <a href="index.html" class="logo">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1.2 0-2-1-2-2 0-2 2-3 2-3s2 1 2 3c0 1-.8 2-2 2Z" fill="#e0613f"/><circle cx="6.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="17.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="9" cy="5" r="1.8" fill="#3f6b3f"/><circle cx="15" cy="5" r="1.8" fill="#3f6b3f"/></svg>
-      Sprig
+      <img class="logo-mark" src="sprig-logo.png" alt="Sprig">
     </a>
     <div class="navlinks">
       <div class="navitem">
@@ -571,13 +571,6 @@
     <div class="fbar">
       <span>© 2026 Sprig Co. All rights reserved.</span>
       <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
-      <div class="legal-links">
-        <a href="accessibility.html">Accessibility</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
-        <a href="refunds-policy.html">Refunds Policy</a>
-        <a href="subscription-policy.html">Subscription Policy</a>
       </div>
-    </div>
   </div>
 </footer>

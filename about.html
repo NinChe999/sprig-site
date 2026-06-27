@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Sprig</title>
+<title>About Us — Sprig</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Nunito:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -117,36 +117,41 @@
   .menutoggle span{display:block;width:26px;height:3px;background:var(--bark);
     margin:5px 0;border-radius:2px}
 
-  /* hero — full-bleed product photo with overlaid text (TokyoTreat-style) */
-  .hero{position:relative;min-height:min(86vh,720px);display:flex;align-items:center;
-    overflow:hidden;isolation:isolate}
-  .hero-bg{position:absolute;inset:0;z-index:-2;
-    background:url('hero-box.jpg') center right/cover no-repeat;}
-  /* green diagonal scrim on the left so text reads, fading into the photo */
-  .hero-scrim{position:absolute;inset:0;z-index:-1;
-    background:
-      linear-gradient(100deg, rgba(24,40,28,.92) 0%, rgba(24,40,28,.78) 26%,
-        rgba(24,40,28,.45) 42%, rgba(24,40,28,.12) 54%, transparent 64%),
-      linear-gradient(to top, rgba(24,40,28,.45), transparent 35%);}
-  .hero .wrap{position:relative;width:100%}
-  .herocopy{max-width:540px;color:#fff}
-  .hero .eyebrow{color:var(--honey)}
-  .hero h1{font-size:clamp(2.5rem,5.2vw,4.2rem);margin:.6rem 0 1rem;color:#fff;
-    text-shadow:0 2px 20px rgba(0,0,0,.25)}
-  .hero h1 em{font-style:normal;color:var(--honey)}
-  .hero p.lede{font-size:1.13rem;max-width:34ch;font-weight:600;color:#f2ece0;
-    text-shadow:0 1px 12px rgba(0,0,0,.3)}
-  .rating{display:flex;align-items:center;gap:.6rem;margin:1.4rem 0 1.8rem;font-weight:700;color:#fff}
+  /* hero */
+  .hero{position:relative;background:
+    radial-gradient(circle at 80% 18%, var(--sky), transparent 42%),
+    radial-gradient(circle at 12% 78%, #f5d9a8, transparent 45%),
+    var(--cream);
+    padding:70px 0 90px;overflow:hidden}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.2vw,4.3rem);margin:.6rem 0 1rem}
+  .hero h1 em{font-style:normal;color:var(--berry)}
+  .hero p.lede{font-size:1.15rem;max-width:30ch;font-weight:600;color:#5a4a38}
+  .rating{display:flex;align-items:center;gap:.6rem;margin:1.4rem 0 1.8rem;font-weight:700}
   .stars{color:var(--honey);font-size:1.2rem;letter-spacing:.1em}
-  .rating small{color:#dcd2c2;font-weight:600}
+  .rating small{color:#8a7a66;font-weight:600}
   .heroctas{display:flex;gap:.9rem;flex-wrap:wrap}
-  /* floating treat accents spilling toward the text, like TokyoTreat */
-  .floaty{position:absolute;font-size:2.3rem;z-index:1;
-    filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));animation:bob 4.5s ease-in-out infinite}
-  .f1{top:18%;left:46%;animation-delay:.1s}
-  .f2{bottom:16%;left:40%;animation-delay:.7s;font-size:2.7rem}
-  .f3{top:30%;left:54%;animation-delay:1.2s;font-size:1.8rem}
+  .heroart{position:relative;display:flex;justify-content:center}
+  .box3d{
+    width:330px;height:330px;border-radius:34px;position:relative;
+    background:linear-gradient(150deg,var(--berry),#cf4f2e);
+    box-shadow:0 30px 60px -18px var(--shadow);
+    display:flex;align-items:center;justify-content:center;
+    transform:rotate(-6deg);
+  }
+  .box3d::before{content:"";position:absolute;inset:18px;border:3px dashed rgba(255,255,255,.45);border-radius:24px}
+  .box3d .lid{position:absolute;top:-26px;left:-14px;right:-14px;height:64px;
+    background:var(--moss);border-radius:18px;transform:rotate(2deg);
+    box-shadow:0 8px 0 var(--moss-deep)}
+  .box3d .brand{font-family:var(--display);font-weight:900;color:#fff;
+    font-size:2.6rem;letter-spacing:-.02em;z-index:2}
+  .floaty{position:absolute;font-size:2.4rem;filter:drop-shadow(0 6px 8px var(--shadow));animation:bob 4s ease-in-out infinite}
+  .f1{top:6%;right:8%;animation-delay:.1s}
+  .f2{bottom:2%;left:2%;animation-delay:.7s}
+  .f3{top:48%;right:-2%;animation-delay:1.2s}
+  .f4{bottom:18%;right:14%;font-size:1.9rem;animation-delay:.4s}
   @keyframes bob{50%{transform:translateY(-14px) rotate(8deg)}}
+  .pawtrail{position:absolute;inset:0;pointer-events:none;opacity:.12;z-index:0}
 
   /* seen on */
   .seen{padding:30px 0 10px;text-align:center}
@@ -210,50 +215,19 @@
   .uspcard::after{content:"";position:absolute;width:120px;height:120px;
     border-radius:50%;background:var(--moss);opacity:.18;bottom:-40px;right:-30px}
 
-  /* testimonials marquee (two auto-scrolling rows) */
-  .reviews-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem}
-  .ig-link{font-weight:800;color:var(--berry);display:inline-flex;align-items:center;gap:.4rem}
-  .ig-link svg{width:20px;height:20px}
-  .marquee{position:relative;margin-top:1.8rem;
-    /* let rows bleed full-width so cards peek at screen edges */
-    width:100vw;margin-left:calc(50% - 50vw);overflow:hidden;
-    padding:6px 0}
-  /* soft fade on both edges */
-  .marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:3;pointer-events:none}
-  .marquee::before{left:0;background:linear-gradient(to right,var(--cream),transparent)}
-  .marquee::after{right:0;background:linear-gradient(to left,var(--cream),transparent)}
-  .mrow{display:flex;gap:22px;width:max-content;padding:14px 11px}
-  .mrow.r1{animation:scrollL 46s linear infinite}
-  .mrow.r2{animation:scrollR 46s linear infinite}
-  .marquee:hover .mrow{animation-play-state:paused}
-  @keyframes scrollL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-  @keyframes scrollR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
-  .tcard{flex:0 0 340px;width:340px;height:280px;border-radius:22px;overflow:hidden;display:flex}
-  /* photo-style card */
-  .tcard.photo{position:relative;color:#fff;align-items:flex-end;
-    background:linear-gradient(160deg,#8fc25b,#3f6b3f)}
-  .tcard.photo.c-honey{background:linear-gradient(160deg,#f2b134,#e0613f)}
-  .tcard.photo.c-teal{background:linear-gradient(160deg,#bfe0d8,#3f6b3f)}
-  .tcard.photo.c-berry{background:linear-gradient(160deg,#e0613f,#b84025)}
-  .tcard.photo .pic{position:absolute;inset:0;display:flex;align-items:center;
-    justify-content:center;font-size:5.5rem;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25))}
-  .tcard.photo::after{content:"";position:absolute;inset:0;
-    background:linear-gradient(to top,rgba(43,33,24,.55),transparent 45%)}
-  .handle{position:relative;z-index:2;margin:0 14px 14px;background:var(--honey);
-    color:var(--bark);font-weight:800;font-size:.92rem;padding:.55rem .9rem;
-    border-radius:13px;display:flex;align-items:center;gap:.45rem;box-shadow:0 6px 14px rgba(0,0,0,.18)}
-  .handle svg{width:17px;height:17px;flex:none}
-  /* quote-style card */
-  .tcard.quote{background:#fff;border:2px solid var(--paper-edge);padding:26px 26px;
-    flex-direction:column;justify-content:center;text-align:center;
+  /* testimonials */
+  .tcloud{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:1.6rem}
+  .tcard{background:#fff;border-radius:20px;padding:24px;border:2px solid var(--paper-edge);
     box-shadow:0 10px 26px -18px var(--shadow)}
-  .tcard.quote p{font-family:var(--display);font-weight:500;font-size:1.08rem;
-    line-height:1.4;color:var(--bark);margin-bottom:1.1rem}
-  .tcard.quote .name{display:flex;align-items:center;justify-content:center;gap:.5rem;
-    font-weight:800;color:var(--moss-deep);font-size:.98rem}
-  .tcard.quote .name .st{color:var(--honey);font-size:1.05rem}
-  .tcard.quote .stars{color:var(--honey);letter-spacing:.12em;margin-bottom:.7rem;font-size:.9rem}
-  @media(prefers-reduced-motion:reduce){.mrow{animation:none}}
+  .tcard .who{display:flex;align-items:center;gap:.7rem;margin-bottom:.7rem}
+  .av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-size:1.3rem;background:var(--sky)}
+  .tcard:nth-child(2n) .av{background:#fbe2b0}
+  .tcard:nth-child(3n) .av{background:#dff0c8}
+  .who b{font-weight:800;font-size:.95rem}
+  .who small{display:block;color:#9a8a76;font-family:var(--util);font-size:.75rem}
+  .tcard p{font-weight:600;color:#5a4a38;font-size:.96rem}
+  .tcard .s{color:var(--honey);letter-spacing:.1em;margin-top:.6rem}
 
   /* pricing */
   .pricing{background:var(--sky)}
@@ -294,7 +268,7 @@
 
   /* footer */
   footer{background:var(--bark);color:var(--cream);padding:60px 0 30px}
-  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
   .fbrand .logo{color:var(--sprout)}
   .fbrand p{color:#b6a489;font-weight:600;margin:.8rem 0;max-width:28ch}
   .fcol h4{font-family:var(--util);text-transform:uppercase;letter-spacing:.15em;
@@ -311,9 +285,6 @@
   .socials{display:flex;gap:.8rem}
   .socials a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);
     display:flex;align-items:center;justify-content:center;font-size:1rem}
-  .legal-links{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;width:100%;margin-top:.4rem}
-  .legal-links a{color:#9a8a76;font-size:.82rem;font-weight:600}
-  .legal-links a:hover{color:#fff}
 
   @media(max-width:900px){
     .navlinks,.navright .ghost{display:none}
@@ -331,133 +302,19 @@
     .navlinks.open .dropdown::before{display:none}
     .navlinks.open .navitem.expanded .dropdown{display:block}
     .navlinks.open .navitem.expanded>.trigger .caret{transform:rotate(180deg)}
-    .hero{min-height:auto;padding:60px 0}
-    .hero-bg{background-position:center bottom;opacity:.9}
-    .hero-scrim{background:
-      linear-gradient(to bottom, rgba(24,40,28,.86) 0%, rgba(24,40,28,.7) 55%, rgba(24,40,28,.82) 100%)}
-    .herocopy{max-width:none;text-align:center;margin:0 auto}
+    .hero .wrap{grid-template-columns:1fr;text-align:center}
     .hero p.lede{margin:0 auto}
     .rating,.heroctas{justify-content:center}
-    .floaty{display:none}
-    .monthgrid,.steps,.uspgrid,.plans,.fgrid{grid-template-columns:1fr}
+    .heroart{margin-top:1.5rem}
+    .monthgrid,.steps,.uspgrid,.tcloud,.plans,.fgrid{grid-template-columns:1fr}
     .plan.feat{transform:none}
     .fgrid{grid-template-columns:1fr 1fr}
   }
-  /* ===== Build-a-box modal flow ===== */
-  .modal-overlay{position:fixed;inset:0;z-index:200;background:rgba(43,33,24,.55);
-    backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;padding:20px}
-  .modal-overlay.open{display:flex}
-  .modal{background:var(--cream);border-radius:26px;width:100%;max-width:880px;
-    max-height:90vh;overflow:hidden;display:flex;flex-direction:column;
-    box-shadow:0 40px 80px -30px rgba(0,0,0,.5);animation:popIn .28s cubic-bezier(.22,.61,.36,1)}
-  @keyframes popIn{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
-  .modal-head{display:flex;align-items:center;justify-content:space-between;
-    padding:22px 28px;border-bottom:2px solid var(--paper-edge);flex:none}
-  .modal-head h3{font-family:var(--display);font-size:1.5rem}
-  .modal-head h3 em{font-style:normal;color:var(--berry)}
-  .modal-close{background:none;border:none;cursor:pointer;width:38px;height:38px;
-    border-radius:50%;font-size:1.3rem;color:var(--bark);display:flex;align-items:center;
-    justify-content:center;transition:background .15s}
-  .modal-close:hover{background:var(--paper-edge)}
-  /* step progress */
-  .steps-bar{display:flex;gap:8px;padding:16px 28px 0;flex:none}
-  .step-pip{flex:1;height:6px;border-radius:99px;background:var(--paper-edge);transition:background .25s}
-  .step-pip.done{background:var(--sprout)}
-  .step-pip.active{background:var(--berry)}
-  .modal-body{padding:22px 28px 28px;overflow-y:auto}
-  .step{display:none}
-  .step.active{display:block;animation:fadeStep .3s ease}
-  @keyframes fadeStep{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
-  /* plan list (step 1) */
-  .plan-rows{display:flex;flex-direction:column;gap:14px;margin-top:.4rem}
-  .plan-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;
-    background:#fff;border:2.5px solid var(--paper-edge);border-radius:18px;
-    padding:18px 22px;cursor:pointer;transition:border-color .15s,transform .1s;text-align:left;width:100%;font-family:var(--body)}
-  .plan-row:hover{border-color:var(--sprout)}
-  .plan-row.sel{border-color:var(--berry);background:#fff}
-  .plan-row .pl-left{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap}
-  .plan-row .pl-name{font-family:var(--display);font-weight:700;font-size:1.25rem}
-  .badge{font-family:var(--util);font-weight:700;font-size:.66rem;letter-spacing:.06em;
-    text-transform:uppercase;padding:.25rem .6rem;border-radius:999px;color:#fff}
-  .badge.best{background:var(--berry)}.badge.pop{background:var(--moss)}
-  .plan-row .pl-price{text-align:right;flex:none}
-  .plan-row .pl-price b{font-family:var(--display);font-size:1.4rem}
-  .plan-row .pl-price small{display:block;color:#8a7a66;font-weight:700;font-size:.8rem}
-  .plan-row .save{color:var(--moss);font-weight:800;font-size:.82rem}
-  /* customize (step 2) */
-  .cz-group{margin-bottom:1.4rem}
-  .cz-label{font-family:var(--util);text-transform:uppercase;letter-spacing:.12em;
-    font-size:.72rem;font-weight:700;color:var(--berry);margin-bottom:.7rem;display:block}
-  .opt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .opt{background:#fff;border:2.5px solid var(--paper-edge);border-radius:16px;
-    padding:18px 14px;cursor:pointer;transition:border-color .15s,transform .1s;
-    display:flex;flex-direction:column;align-items:center;gap:.5rem;text-align:center;
-    font-family:var(--body);font-weight:700;color:var(--bark)}
-  .opt:hover{border-color:var(--sprout)}
-  .opt.sel{border-color:var(--berry)}
-  .opt .emoji{font-size:1.9rem}
-  .opt .sub{font-weight:600;color:#8a7a66;font-size:.82rem}
-  .cz-note{background:#fff;border:2px solid var(--sprout);border-radius:14px;
-    padding:14px 16px;font-weight:600;color:#5a4a38;font-size:.92rem;margin-top:.4rem}
-  .fine{font-size:.78rem;color:#9a8a76;font-style:italic;margin-top:.7rem}
-  /* footer actions */
-  .modal-foot{padding:18px 28px;border-top:2px solid var(--paper-edge);flex:none;
-    display:flex;align-items:center;justify-content:space-between;gap:1rem;background:var(--cream)}
-  .modal-foot .total{font-family:var(--display);font-weight:700;font-size:1.2rem}
-  .modal-foot .total small{font-weight:600;color:#8a7a66;font-size:.85rem;font-family:var(--body)}
-  .foot-btns{display:flex;gap:.6rem}
-  .btn-back{background:none;border:2px solid var(--paper-edge);color:var(--bark);
-    font-weight:800;border-radius:999px;padding:.7rem 1.3rem;cursor:pointer;font-family:var(--body);font-size:.95rem;
-    transition:border-color .15s}
-  .btn-back:hover{border-color:var(--bark)}
-  /* cart (step 3) */
-  .cart-line{background:#fff;border:2px solid var(--paper-edge);border-radius:18px;padding:20px;margin-bottom:14px}
-  .cart-line .cl-top{display:flex;justify-content:space-between;font-weight:800;margin-bottom:.5rem}
-  .cart-line .cl-desc{color:#6b5a45;font-weight:600;font-size:.92rem}
-  .cart-line .cl-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem}
-  .chip{background:var(--cream);border:1px solid var(--paper-edge);border-radius:999px;
-    padding:.3rem .8rem;font-weight:700;font-size:.8rem}
-  .cl-remove{background:none;border:none;color:var(--berry);font-weight:800;cursor:pointer;
-    font-size:.85rem;padding:0;margin-top:.7rem;font-family:var(--body)}
-  .cart-empty{text-align:center;padding:30px 10px;color:#8a7a66;font-weight:600}
-  .cart-sub{display:flex;justify-content:space-between;align-items:baseline;
-    font-family:var(--display);font-weight:700;font-size:1.3rem;margin-top:.6rem}
-  .cart-sub small{font-family:var(--body);font-weight:600;color:#8a7a66;font-size:.85rem}
-  .added-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
-    background:var(--moss);color:#fff;font-weight:800;padding:.9rem 1.5rem;border-radius:999px;
-    box-shadow:0 12px 30px -10px rgba(0,0,0,.4);z-index:250;opacity:0;transition:transform .3s,opacity .3s}
-  .added-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
-  @media(max-width:620px){
-    .opt-grid{grid-template-columns:1fr}
-    .plan-row{flex-direction:column;align-items:flex-start}
-    .plan-row .pl-price{text-align:left}
-    .modal-foot{flex-direction:column;align-items:stretch}
-    .foot-btns{justify-content:space-between}
-  }
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-<style>
-  .legal-hero{background:
-    radial-gradient(circle at 85% 20%, var(--sky), transparent 50%),
-    var(--cream);padding:56px 0 36px}
-  .legal-hero .crumbs{font-family:var(--util);font-size:.78rem;letter-spacing:.06em;
-    color:#9a8a76;font-weight:600;margin-bottom:.5rem}
-  .legal-hero .crumbs a{color:var(--moss)}
-  .legal-hero h1{font-size:clamp(2rem,4.4vw,3rem);margin:.3rem 0 .5rem}
-  .legal-hero .updated{font-family:var(--util);font-size:.8rem;font-weight:600;color:#8a7a66}
-  .legal-body{max-width:760px;margin:0 auto;padding:40px 24px 72px}
-  .legal-body h2{font-family:var(--display);font-size:1.45rem;margin:2rem 0 .6rem;color:var(--bark)}
-  .legal-body h2:first-child{margin-top:0}
-  .legal-body p,.legal-body li{font-weight:500;color:#4a3c2c;line-height:1.7;font-size:1rem}
-  .legal-body p{margin-bottom:1rem}
-  .legal-body ul{margin:0 0 1rem 1.2rem}
-  .legal-body li{margin-bottom:.5rem}
-  .legal-body a{color:var(--berry);font-weight:700}
-  .legal-note{background:#fff;border:2px solid var(--paper-edge);border-radius:16px;
-    padding:18px 22px;margin:1.4rem 0;font-weight:600;color:#5a4a38}
-  .legal-note strong{color:var(--berry)}
-</style>
 
+
+<body>
 
 <div class="ann">🌱 New members get a <b>FREE toy</b> in their first box — use code <b>FETCH</b></div>
 
@@ -516,43 +373,130 @@
   </div>
 </nav>
 
-<header class="legal-hero"><div class="wrap"><p class="crumbs"><a href="index.html">Home</a> / Privacy Policy</p><h1>Privacy Policy</h1><p class="updated">Last updated: June 27, 2026</p></div></header>
-<main class="legal-body">
-<p>This Privacy Policy explains how Sprig Co. ("Sprig," "we," "us") collects, uses, and protects your information when you visit our website or subscribe to our service. By using Sprig, you agree to the practices described here.</p>
+<style>
+  .page-hero{background:
+    radial-gradient(circle at 85% 20%, var(--sky), transparent 45%),
+    radial-gradient(circle at 10% 85%, #f5d9a8, transparent 48%),
+    var(--cream);
+    padding:64px 0 48px;text-align:center}
+  .page-hero h1{font-size:clamp(2.4rem,5vw,3.6rem);margin:.5rem 0 .8rem}
+  .page-hero h1 em{font-style:normal;color:var(--berry)}
+  .page-hero p{font-weight:600;color:#5a4a38;max-width:46ch;margin:0 auto;font-size:1.08rem}
+  .crumbs{font-family:var(--util);font-size:.78rem;letter-spacing:.06em;color:#9a8a76;font-weight:600;margin-bottom:.4rem}
+  .crumbs a{color:var(--moss)}
+  .sec{padding:64px 0;border-bottom:2px solid var(--paper-edge)}
+  .sec:last-of-type{border-bottom:none}
+  .sec .wrap{max-width:1000px}
+  .sec .eyebrow{display:block;margin-bottom:.5rem}
+  .sec h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin-bottom:1rem;max-width:20ch}
+  .sec h2 em{font-style:normal;color:var(--berry)}
+  .sec p.body{font-weight:600;color:#5a4a38;max-width:62ch;margin-bottom:1rem;font-size:1.04rem}
+  .two-col{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+  .panel{background:#fff;border:2px solid var(--paper-edge);border-radius:24px;padding:32px;
+    box-shadow:0 14px 36px -22px var(--shadow)}
+  .panel.tint{background:var(--moss);color:var(--cream)}
+  .panel.tint h3{color:var(--cream)}
+  .panel.tint p{color:var(--sky)}
+  .prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:1.4rem}
+  .prod{background:#fff;border:2px solid var(--paper-edge);border-radius:20px;padding:26px;text-align:center;
+    box-shadow:0 12px 30px -20px var(--shadow);transition:transform .15s}
+  .prod:hover{transform:translateY(-5px)}
+  .prod .pi{width:70px;height:70px;border-radius:50%;margin:0 auto .8rem;display:flex;align-items:center;
+    justify-content:center;font-size:2rem;background:var(--sky)}
+  .prod:nth-child(2) .pi{background:#fbe2b0}.prod:nth-child(3) .pi{background:#dff0c8}
+  .prod h3{font-size:1.25rem;margin-bottom:.3rem}
+  .prod p{color:#6b5a45;font-weight:600;font-size:.94rem}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:1.2rem}
+  .info-card{display:flex;gap:1rem;align-items:flex-start;background:#fff;border:2px solid var(--paper-edge);
+    border-radius:18px;padding:22px;transition:border-color .15s}
+  .info-card:hover{border-color:var(--berry)}
+  .info-card .ic{flex:none;width:48px;height:48px;border-radius:13px;background:var(--sky);display:flex;
+    align-items:center;justify-content:center;font-size:1.4rem}
+  .info-card:nth-child(2) .ic{background:#fbe2b0}.info-card:nth-child(3) .ic{background:#dff0c8}
+  .info-card:nth-child(4) .ic{background:#f6cdc0}
+  .info-card h3{font-size:1.15rem;margin-bottom:.2rem}
+  .info-card p{color:#6b5a45;font-weight:600;font-size:.92rem;margin-bottom:.5rem}
+  .info-card a.lnk{font-weight:800;color:var(--berry);font-size:.9rem}
+  .contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:1rem}
+  .contact-chip{display:flex;align-items:center;gap:.6rem;background:#fff;border:2px solid var(--paper-edge);
+    border-radius:999px;padding:.7rem 1.2rem;font-weight:700}
+  @media(max-width:760px){
+    .two-col,.prod-grid,.info-grid{grid-template-columns:1fr}
+  }
+</style>
 
-<h2>Information we collect</h2>
-<ul>
-  <li><strong>Account &amp; order details:</strong> your name, email, shipping address, and the plan and box preferences you choose.</li>
-  <li><strong>Dog profile:</strong> information you give us about your dog, such as size, age, and any allergies or sensitivities, so we can tailor your box.</li>
-  <li><strong>Payment information:</strong> processed securely by our payment provider. We do not store full card numbers on our servers.</li>
-  <li><strong>Usage data:</strong> basic analytics about how you use our site, collected to help us improve it.</li>
-</ul>
+<header class="page-hero">
+  <div class="wrap">
+    <p class="crumbs"><a href="index.html">Home</a> / About Us</p>
+    <span class="eyebrow">Made by dog people</span>
+    <h1>Treats we'd feel good <em>feeding our own dogs</em>.</h1>
+    <p>Sprig started with a simple frustration: too many treats hide cheap fillers behind cute packaging. So we built a box we'd actually trust.</p>
+  </div>
+</header>
 
-<h2>How we use your information</h2>
-<ul>
-  <li>To fulfill and deliver your subscription boxes.</li>
-  <li>To personalize your boxes to your dog.</li>
-  <li>To communicate about your account, orders, and support requests.</li>
-  <li>To send marketing messages, which you can opt out of at any time.</li>
-  <li>To improve our products, website, and service.</li>
-</ul>
+<!-- OUR STORY -->
+<section class="sec" id="story">
+  <div class="wrap two-col">
+    <div>
+      <span class="eyebrow">Our Story</span>
+      <h2>It began with one <em>picky rescue</em>.</h2>
+      <p class="body">When our founder adopted a sensitive-stomached rescue named Sprig, every store-bought treat seemed to cause trouble — long ingredient lists, mystery "meat meal," dyes for the humans more than the dogs.</p>
+      <p class="body">So we started making treats at home from single-source proteins and real produce, and roping in a vet to vet every recipe. Friends' dogs wanted in. That kitchen experiment became the box you see today: better ingredients, tougher toys, delivered every month.</p>
+    </div>
+    <div class="panel tint">
+      <h3 style="font-family:var(--display);font-size:1.6rem;margin-bottom:.6rem">Our promise</h3>
+      <p style="font-weight:600">No fillers. No mystery meat. No dyes. A licensed vet signs off on every single box before it ships to your door.</p>
+    </div>
+  </div>
+</section>
 
-<h2>Sharing your information</h2>
-<p>We do not sell your personal information. We share it only with service providers who help us operate — such as payment processors, shipping carriers, and email tools — and only as needed to provide our service, or where required by law.</p>
+<!-- OUR PRODUCTS -->
+<section class="sec" id="products">
+  <div class="wrap">
+    <span class="eyebrow">Our Products</span>
+    <h2>What goes in <em>every box</em>.</h2>
+    <p class="body">A monthly mix of real-ingredient treats plus one durable toy, tailored to your dog's size and chew strength.</p>
+    <div class="prod-grid">
+      <div class="prod"><div class="pi">🥕</div><h3>Real-Ingredient Treats</h3><p>Single-source proteins, real fruits and veggies, baked in small batches.</p></div>
+      <div class="prod"><div class="pi">🎾</div><h3>Tough Toys</h3><p>Tested for durability and matched to your dog's bite — no five-minute squeakers.</p></div>
+      <div class="prod"><div class="pi">🩺</div><h3>Vet Info Card</h3><p>A simple card explaining why each treat is good for your pup that month.</p></div>
+    </div>
+  </div>
+</section>
 
-<h2>Your choices</h2>
-<p>You can review or update your account information, opt out of marketing emails using the unsubscribe link, and request access to or deletion of your personal data by contacting us. Depending on where you live, you may have additional rights under applicable privacy laws.</p>
+<!-- INFORMATION -->
+<section class="sec" id="info">
+  <div class="wrap">
+    <span class="eyebrow">Information</span>
+    <h2>More ways to <em>dig in</em>.</h2>
+    <div class="info-grid">
+      <div class="info-card" id="affiliate"><div class="ic">🤝</div><div><h3>Affiliate Program</h3><p>Love Sprig? Earn rewards for every friend you refer to the pack.</p><a class="lnk" href="#">Become an affiliate →</a></div></div>
+      <div class="info-card" id="rewards"><div class="ic">🎁</div><div><h3>Rewards</h3><p>Earn points on every box and redeem them for free treats and toys.</p><a class="lnk" href="#">See rewards →</a></div></div>
+      <div class="info-card"><div class="ic">⭐</div><div><h3>Reviews</h3><p>4.9 stars from 3,100+ dogs and their people.</p><a class="lnk" href="index.html#reviews">Read reviews →</a></div></div>
+      <div class="info-card" id="blog"><div class="ic">📝</div><div><h3>Blog</h3><p>Ingredient deep-dives, training tips, and good-dog stories.</p><a class="lnk" href="#">Visit the blog →</a></div></div>
+    </div>
+  </div>
+</section>
 
-<h2>Cookies</h2>
-<p>We use cookies and similar technologies to keep you signed in, remember preferences, and understand site usage. You can control cookies through your browser settings, though some features may not work without them.</p>
+<!-- SUPPORT / CONTACT -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <span class="eyebrow">Support</span>
+    <h2>Got a <em>question</em>? We're here.</h2>
+    <p class="body">Find quick answers in our FAQs, or reach out — a real dog person will get back to you.</p>
+    <div class="contact-row">
+      <a class="contact-chip" href="index.html#faq">❓ Read the FAQs</a>
+      <a class="contact-chip" href="mailto:hello@sprig.example">✉️ hello@sprig.example</a>
+      <a class="contact-chip" href="#">💬 Live chat</a>
+    </div>
+  </div>
+</section>
 
-<div class="legal-note"><strong>Questions about your privacy?</strong> Email us at <a href="mailto:privacy@sprig.example">privacy@sprig.example</a> and we will be glad to help.</div>
-</main>
 <footer>
   <div class="wrap">
     <div class="fgrid">
       <div class="fbrand">
-        <a href="index.html" class="logo">
+        <a href="#" class="logo">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1.2 0-2-1-2-2 0-2 2-3 2-3s2 1 2 3c0 1-.8 2-2 2Z" fill="#e0613f"/><circle cx="6.5" cy="9" r="2" fill="#8fc25b"/><circle cx="17.5" cy="9" r="2" fill="#8fc25b"/><circle cx="9" cy="5" r="1.8" fill="#8fc25b"/><circle cx="15" cy="5" r="1.8" fill="#8fc25b"/></svg>
           Sprig
         </a>
@@ -572,16 +516,36 @@
       </div>
       <div class="fcol">
         <h4>Support</h4>
-        <a href="index.html#faq">FAQs</a><a href="about.html#contact">Contact</a><a href="shipping-policy.html">Shipping</a><a href="#">Manage account</a>
-      </div>
-      <div class="fcol">
-        <h4>Policies</h4>
-        <a href="accessibility.html">Accessibility</a><a href="privacy-policy.html">Privacy Policy</a><a href="terms-of-service.html">Terms of Service</a><a href="refunds-policy.html">Refunds Policy</a><a href="subscription-policy.html">Subscription Policy</a>
+        <a href="index.html#faq">FAQs</a><a href="#">Contact</a><a href="#">Shipping</a><a href="#">Manage account</a>
       </div>
     </div>
     <div class="fbar">
       <span>© 2026 Sprig Co. All rights reserved.</span>
       <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
-      </div>
+      <span>Terms · Privacy</span>
+    </div>
   </div>
 </footer>
+
+<script>
+  const links = document.querySelector('.navlinks');
+  document.querySelector('.menutoggle').addEventListener('click',()=>{
+    links.classList.toggle('open');
+  });
+  // On mobile, tapping a trigger that has a dropdown expands it; plain links navigate
+  document.querySelectorAll('.navitem > .trigger').forEach(t=>{
+    const item = t.parentElement;
+    const hasDropdown = item.querySelector('.dropdown');
+    t.addEventListener('click',e=>{
+      if(window.innerWidth<=900 && hasDropdown){
+        e.preventDefault();
+        const wasOpen = item.classList.contains('expanded');
+        document.querySelectorAll('.navitem').forEach(i=>i.classList.remove('expanded'));
+        if(!wasOpen) item.classList.add('expanded');
+      }
+    });
+  });
+  // Close mobile menu after choosing a link
+  links.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click',()=>links.classList.remove('open'));
+  });

@@ -63,6 +63,7 @@
   .logo{font-family:var(--display);font-weight:900;font-size:1.7rem;
     color:var(--moss);display:flex;align-items:center;gap:.4rem;letter-spacing:-.02em}
   .logo svg{width:30px;height:30px}
+  .logo img.logo-mark{height:40px;width:auto;display:block}
   /* icon-led dropdown nav */
   .navlinks{display:flex;gap:.4rem;font-weight:700;font-size:.95rem;height:100%}
   .navitem{position:relative;display:flex;align-items:center}
@@ -193,21 +194,23 @@
   .step h3{font-size:1.4rem;margin-bottom:.4rem}
   .step p{color:#6b5a45;font-weight:600;font-size:.96rem}
 
-  /* more than treats / USP */
-  .usp{background:
-    linear-gradient(var(--bark),var(--bark));color:var(--cream)}
-  .usp .sectitle{color:var(--cream)}
-  .usp .sectitle em{color:var(--honey)}
+  /* more than treats / USP — light, centered, illustrated (BarkBox-style) */
+  .usp{background:var(--cream)}
+  .usp .wrap{text-align:center}
+  .usp .sechead{justify-content:center}
+  .usp .eyebrow{display:block;margin-bottom:.3rem}
+  .usp .sectitle{color:var(--bark);margin-left:auto;margin-right:auto;max-width:22ch}
+  .usp .sectitle em{color:var(--berry)}
   .usp .secnum{color:var(--sprout)}
-  .uspgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:1.4rem}
-  .uspcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
-    border-radius:22px;padding:30px;position:relative;overflow:hidden}
-  .uspcard .big{font-family:var(--display);font-weight:900;font-size:3rem;
-    color:var(--honey);line-height:1}
-  .uspcard h3{font-size:1.35rem;margin:.7rem 0 .5rem}
-  .uspcard p{color:#cdбbbаa;color:#cbbcaa;font-weight:600;font-size:.95rem}
-  .uspcard::after{content:"";position:absolute;width:120px;height:120px;
-    border-radius:50%;background:var(--moss);opacity:.18;bottom:-40px;right:-30px}
+  .usp-sub{font-weight:600;color:#6b5a45;max-width:46ch;margin:0 auto 2.6rem;font-size:1.08rem}
+  .uspgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;margin-top:1rem}
+  .uspcard{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .uspcard .illo{height:170px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:1.2rem}
+  .uspcard .illo img{max-height:170px;width:auto;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+  .uspcard:hover .illo img{transform:translateY(-8px) rotate(-2deg)}
+  .uspcard h3{font-size:1.4rem;margin-bottom:.5rem;color:var(--bark)}
+  .uspcard p{color:#6b5a45;font-weight:600;font-size:.98rem;max-width:30ch}
 
   /* testimonials marquee (two auto-scrolling rows) */
   .reviews-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1rem}
@@ -285,15 +288,21 @@
   details p{padding:0 0 1rem;color:#5a4a38;font-weight:600}
 
   /* final cta */
-  .final{background:var(--berry);color:#fff;text-align:center;padding:90px 0}
-  .final h2{font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;max-width:16ch;margin:0 auto 1rem}
-  .final p{font-weight:700;font-size:1.1rem;margin-bottom:1.6rem;opacity:.95}
+  .final{position:relative;color:#fff;text-align:center;padding:120px 0;overflow:hidden;isolation:isolate}
+  .final-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+  .final-overlay{position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(rgba(44,77,44,.72),rgba(43,33,24,.78))}
+  .final .wrap{position:relative}
+  .final h2{font-size:clamp(2.2rem,5vw,3.4rem);color:#fff;max-width:16ch;margin:0 auto 1rem;
+    text-shadow:0 2px 18px rgba(0,0,0,.35)}
+  .final p{font-weight:700;font-size:1.1rem;margin-bottom:1.6rem;opacity:.97;
+    text-shadow:0 1px 12px rgba(0,0,0,.35)}
   .final .btn{background:var(--cream);color:var(--bark);box-shadow:0 6px 0 #cbb98f}
   .final .btn:hover{box-shadow:0 4px 0 #cbb98f}
 
   /* footer */
   footer{background:var(--bark);color:var(--cream);padding:60px 0 30px}
-  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+  .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;gap:30px}
   .fbrand .logo{color:var(--sprout)}
   .fbrand p{color:#b6a489;font-weight:600;margin:.8rem 0;max-width:28ch}
   .fcol h4{font-family:var(--util);text-transform:uppercase;letter-spacing:.15em;
@@ -443,8 +452,7 @@
 <nav>
   <div class="wrap navinner">
     <a href="#" class="logo">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M12 21c-1.2 0-2-1-2-2 0-2 2-3 2-3s2 1 2 3c0 1-.8 2-2 2Z" fill="#e0613f"/><circle cx="6.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="17.5" cy="9" r="2" fill="#3f6b3f"/><circle cx="9" cy="5" r="1.8" fill="#3f6b3f"/><circle cx="15" cy="5" r="1.8" fill="#3f6b3f"/></svg>
-      Sprig
+      <img class="logo-mark" src="sprig-logo.png" alt="Sprig">
     </a>
     <div class="navlinks">
       <div class="navitem">
@@ -535,7 +543,7 @@
 <section class="block month" id="month">
   <div class="wrap">
     <div class="sechead">
-      <span class="secnum">01</span><span class="jp">今月のボックス</span>
+      <span class="secnum">01</span>
     </div>
     <span class="eyebrow">This month's box</span>
     <div class="monthgrid" style="margin-top:1.2rem">
@@ -564,7 +572,7 @@
 <!-- HOW IT WORKS -->
 <section class="block" id="how">
   <div class="wrap">
-    <div class="sechead"><span class="secnum">02</span><span class="jp">仕組み</span></div>
+    <div class="sechead"><span class="secnum">02</span></div>
     <span class="eyebrow">How it works</span>
     <h2 class="sectitle">From our kitchen to your dog's <em>happy dance</em>.</h2>
     <div class="steps">
@@ -590,22 +598,23 @@
 <!-- WHY SPRIG / USP -->
 <section class="block usp" id="why">
   <div class="wrap">
-    <div class="sechead"><span class="secnum">03</span><span class="jp">スプリグの理由</span></div>
+    <div class="sechead"><span class="secnum">03</span></div>
     <span class="eyebrow">More than just treats</span>
     <h2 class="sectitle">Why dog people choose <em>Sprig</em>.</h2>
+    <p class="usp-sub">A monthly box that brings real nutrition, tough play, and a little joy to your pup's life.</p>
     <div class="uspgrid">
       <div class="uspcard">
-        <div class="big">01</div>
+        <div class="illo"><img src="icon-ingredients.png" alt="Confident dog wearing heart sunglasses"></div>
         <h3>Ingredients you can read</h3>
         <p>No fillers, no mystery meat. Single-source proteins and real veggies — the kind you'd be happy to eat yourself.</p>
       </div>
       <div class="uspcard">
-        <div class="big">02</div>
+        <div class="illo"><img src="icon-toys.png" alt="Dog leaping toward a delivery box"></div>
         <h3>Toys built to survive</h3>
         <p>Every box includes a tested, tough toy matched to your dog's chew strength. Goodbye, five-minute squeakers.</p>
       </div>
       <div class="uspcard">
-        <div class="big">03</div>
+        <div class="illo"><img src="icon-vet.png" alt="Happy dog carrying treats and toys"></div>
         <h3>Vet-led curation</h3>
         <p>A licensed vet signs off on every box, plus a little card explaining why each treat is good for your pup.</p>
       </div>
@@ -616,7 +625,7 @@
 <!-- TESTIMONIALS -->
 <section class="block" id="reviews">
   <div class="wrap">
-    <div class="sechead"><span class="secnum">04</span><span class="jp">お客様の声</span></div>
+    <div class="sechead"><span class="secnum">04</span></div>
     <div class="reviews-head">
       <div>
         <span class="eyebrow">Testimonials</span>
@@ -660,7 +669,7 @@
 <!-- PRICING -->
 <section class="block pricing" id="pricing">
   <div class="wrap">
-    <div class="sechead"><span class="secnum">05</span><span class="jp">プラン</span></div>
+    <div class="sechead"><span class="secnum">05</span></div>
     <span class="eyebrow">Pick your plan</span>
     <h2 class="sectitle">Choose your <em>wag</em> size.</h2>
     <div class="plans">
@@ -719,6 +728,10 @@
 
 <!-- FINAL CTA -->
 <section class="final">
+  <video class="final-video" autoplay muted loop playsinline poster="sprig-cta-poster.jpg">
+    <source src="sprig-cta.mp4" type="video/mp4">
+  </video>
+  <div class="final-overlay"></div>
   <div class="wrap">
     <h2>Ready to make delivery day the best day?</h2>
     <p>Join thousands of dogs eating better and chewing longer.</p>
@@ -761,13 +774,7 @@
     <div class="fbar">
       <span>© 2026 Sprig Co. All rights reserved.</span>
       <div class="socials"><a href="#">𝕏</a><a href="#">f</a><a href="#">◎</a><a href="#">▶</a></div>
-      <div class="legal-links">
-        <a href="accessibility.html">Accessibility</a>
-        <a href="privacy-policy.html">Privacy Policy</a>
-        <a href="terms-of-service.html">Terms of Service</a>
-        <a href="refunds-policy.html">Refunds Policy</a>
-        <a href="subscription-policy.html">Subscription Policy</a>
-      </div>
+      <span>Made for good dogs.</span>
     </div>
   </div>
 </footer>
